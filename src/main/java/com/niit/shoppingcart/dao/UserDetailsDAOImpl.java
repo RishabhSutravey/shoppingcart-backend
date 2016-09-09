@@ -3,7 +3,6 @@ package com.niit.shoppingcart.dao;
 import java.util.List;
 
 
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 		try {
 			sessionFactory.getCurrentSession().save(userDetails);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -36,7 +35,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 		try {
 			sessionFactory.getCurrentSession().update(userDetails);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -46,7 +45,7 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 		try {
 			sessionFactory.getCurrentSession().delete(userDetails);
 			return true;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -68,6 +67,23 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 			return list.get(0);
 		}
 	}
+	@Transactional
+	public UserDetails isValidUser(String id,String password){
+		String hql="from UserDetails where id= '" +id+"' and password '" +password+"'"; 
+		@SuppressWarnings("rawtypes")
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<UserDetails> list = query.list();
+		if(list==null){
+			return null;
+		}
+		else{
+			return list.get(0);
+		}
+	}
+	
+	
+	@Transactional
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public  List<UserDetails> list(){
 		

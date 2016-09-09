@@ -22,19 +22,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		this.sessionFactory=sessionFactory;
 	}
 	@Transactional
-	public boolean save(Category category){
+	public boolean saveOrUpdate(Category category){
 		try {
-			sessionFactory.getCurrentSession().save(category);
-			return true;
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	@Transactional
-	public boolean update(Category category){
-		try {
-			sessionFactory.getCurrentSession().update(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(category);
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -53,7 +43,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 	@Transactional
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public  Category get(String id){
+	public  Category get(int id){
 		
 		String hql = "from Category where id= "+ "'"+ id+"'" ;
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
@@ -69,6 +59,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Transactional
 	public  List<Category> list(){
 		
 		String hql ="from Category";

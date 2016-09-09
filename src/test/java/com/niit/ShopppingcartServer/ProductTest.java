@@ -18,16 +18,15 @@ public class ProductTest {
 		ProductDAO productDAO = (ProductDAO) context.getBean("productDAO");
 		Product product = (Product) context.getBean("product");
 
-		product.setId("PD002");
+		product.setId(123);
 		product.setName("samsung");
 		product.setDescription("this is laptop product");
-		product.setPrice(26000);
+		product.setPrice(20000);
 
-		if (productDAO.save(product) == true) {
+		if (productDAO.saveOrUpdate(product) == true) {
 			System.out.println("product created successfully");
 		} else {
 			System.out.println("not able to create product");
 		}
-
-	}
-}
+		
+}}

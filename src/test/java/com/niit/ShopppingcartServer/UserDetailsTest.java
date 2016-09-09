@@ -8,7 +8,6 @@ import com.niit.shoppingcart.model.UserDetails;
 public class UserDetailsTest {
 
 	public static void main(String[] args) {
-
 		@SuppressWarnings("resource")
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
@@ -18,7 +17,7 @@ public class UserDetailsTest {
 		UserDetailsDAO userDetailsDAO = (UserDetailsDAO) context.getBean("userDetailsDAO");
 		UserDetails userDetails = (UserDetails) context.getBean("userDetails");
 
-		userDetails.setId("UD001");
+		userDetails.setId("UD002");
 		userDetails.setName("rish");
 		userDetails.setPassword("rishabh");
 		userDetails.setMail("xyz123@ymail.com");

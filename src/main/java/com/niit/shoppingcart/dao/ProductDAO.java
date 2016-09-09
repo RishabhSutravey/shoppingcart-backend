@@ -9,10 +9,9 @@ import com.niit.shoppingcart.model.Product;
 @Repository
 public interface ProductDAO {
 
-public boolean save(Product product);
-public boolean update(Product product);
+public boolean saveOrUpdate(Product product);
 public boolean delete(Product product);
-public  Product get(String id);
+public  Product get(int id);
 public  List<Product> list();
 	
 	

@@ -14,6 +14,12 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shoppingcart.dao.CategoryDAO;
+import com.niit.shoppingcart.dao.CategoryDAOImpl;
+import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.ProductDAOImpl;
+import com.niit.shoppingcart.dao.SupplierDAO;
+import com.niit.shoppingcart.dao.SupplierDAOImpl;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
@@ -63,7 +69,7 @@ HibernateTransactionManager transactionManager=new 	HibernateTransactionManager(
 return transactionManager;
 	
 }
-/*@Autowired
+@Autowired
 @Bean(name="categoryDAO")
 public CategoryDAO getCategoryDAO(SessionFactory sessionFactory){
 	
@@ -75,5 +81,11 @@ public CategoryDAO getCategoryDAO(SessionFactory sessionFactory){
 public ProductDAO getProductDAO(SessionFactory sessionFactory){
 	
 	return new ProductDAOImpl(sessionFactory);
-}*/
+}
+@Autowired
+@Bean(name="supplierDAO")
+public SupplierDAO getSupplierDAO(SessionFactory sessionFactory){
+	
+	return new SupplierDAOImpl(sessionFactory);
+}
 }

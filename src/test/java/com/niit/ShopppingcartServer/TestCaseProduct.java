@@ -14,50 +14,56 @@ public class TestCaseProduct {
 
 	@Autowired
 	ProductDAO productDAO;
-	
+
 	@Autowired
 	Product product;
 	AnnotationConfigApplicationContext context;
-	
+
 	@Before
-	public void init(){
-	
+	public void init() {
+
 		context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit.shoppingcart");
 		context.refresh();
-		productDAO =(ProductDAO) context.getBean("productDAO");
-		product=(Product) context.getBean("product");
-	
+		productDAO = (ProductDAO) context.getBean("productDAO");
+		product = (Product) context.getBean("product");
+
 	}
 
 	@Test
-	public void deleteProductTestCase(){
-		
-		product.setId("PD001");
-		boolean flag=productDAO.delete(product);
-        assertEquals("deleteProductTestCase ", flag, true);	
+	public void deleteProductTestCase() {
+
+		product.setId(213);
+		boolean flag = productDAO.delete(product);
+		assertEquals("deleteProductTestCase ", flag, true);
 	}
-@Test
-public void addProductTestCase(){
-	product.setId("MOB003");
-	product.setName("iphone");
-	product.setDescription("this is iphone");
-	product.setPrice(6000);
-productDAO.save(product);
-assertEquals("addProductTestCase",productDAO.save(product),true);
-}
-@Test
-public void listProductTestCase(){
-	assertEquals("listProductTestCase",productDAO.list().size(),4);
-}
-@Test
-public void updateProductTestCase(){
-	product.setId("MOB004");
-	product.setPrice(5432);
-	assertEquals("updateProductTestCase",productDAO.update(product),false);
-}
-@Test
-public void getProductTestCase(){
-	assertEquals("getProductTestCase",productDAO.get("MOB004"),null);
-}
+
+	@Test
+	public void addProductTestCase() {
+		product.setId(1232);
+		product.setName("iphone");
+		product.setDescription("this is iphone");
+		product.setPrice(6000);
+
+		assertEquals("addProductTestCase", productDAO.saveOrUpdate(product), true);
+	}
+
+	@Test
+	public void listProductTestCase() {
+		assertEquals("listProductTestCase", productDAO.list().size(), 7);
+	}
+
+	@Test
+	public void updateProductTestCase() {
+		product.setId(1231);
+		product.setName("sams");
+		product.setDescription("this is samsung");
+		product.setPrice(5432);
+		assertEquals("updateProductTestCase", productDAO.saveOrUpdate(product), true);
+	}
+
+	@Test
+	public void getProductTestCase() {
+		assertEquals("getProductTestCase", productDAO.get(123), null);
+	}
 }

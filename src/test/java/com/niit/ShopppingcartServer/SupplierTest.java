@@ -1,7 +1,8 @@
 package com.niit.ShopppingcartServer;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.util.List;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Supplier;
 
@@ -17,16 +18,17 @@ public class SupplierTest {
 
 		SupplierDAO supplierDAO = (SupplierDAO) context.getBean("supplierDAO");
 		Supplier supplier = (Supplier) context.getBean("supplier");
-
-		supplier.setId("SUP001");
+List<Supplier>  supplierList= supplierDAO.list();
+		/*supplier.setId(133);
 		supplier.setName("lot");
 		supplier.setAddress("supplier hyderabad");
-
-		if (supplierDAO.save(supplier) == true) {
-			System.out.println("supplier created successfully");
+*/      System.out.printf("supplierlist"+ supplierList);
+System.out.println("supid  "+supplier.getId());
+		/*if (supplierDAO.update(supplier) == true) {
+			System.out.println("supplier deleted successfully");
 		} else {
 			System.out.println("not able to create supplier");
-		}
+		}*/
 
 	}
 }

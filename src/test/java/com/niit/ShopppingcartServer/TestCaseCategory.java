@@ -32,12 +32,12 @@ public void init(){
 public void categoryListTestCase(){
 	List<Category> list=categoryDAO.list();
 	int rowCount =list.size();
-assertEquals("categoryListTestCase",rowCount, 6);	
+assertEquals("CategoryListTestCase",rowCount, 5);	
 }
 
 @Test
 public void categoryGetTestCase(){
-	category=categoryDAO.get("CG001");
+	category=categoryDAO.get(123);
 	assertEquals(category.getName(), "mobile");
 }
 }
