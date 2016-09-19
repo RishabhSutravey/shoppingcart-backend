@@ -17,14 +17,15 @@ public class UserDetailsTest {
 		UserDetailsDAO userDetailsDAO = (UserDetailsDAO) context.getBean("userDetailsDAO");
 		UserDetails userDetails = (UserDetails) context.getBean("userDetails");
 
-		userDetails.setId("UD002");
-		userDetails.setName("rish");
+		userDetails.setId(21);
+		userDetails.setUsername("rish");
 		userDetails.setPassword("rishabh");
 		userDetails.setMail("xyz123@ymail.com");
 		userDetails.setContact("123456789");
 		userDetails.setAddress("hyderabad");
+		userDetails.setEnabled(true);
 
-		if (userDetailsDAO.save(userDetails) == true) {
+		if (userDetailsDAO.saveOrUpdate(userDetails) == true) {
 			System.out.println("userDetails created successfully");
 		} else {
 			System.out.println("not able to create userDetails");
