@@ -18,12 +18,15 @@ import com.niit.shoppingcart.dao.CartDAO;
 import com.niit.shoppingcart.dao.CartDAOImpl;
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.CategoryDAOImpl;
+import com.niit.shoppingcart.dao.CheckoutDAO;
+import com.niit.shoppingcart.dao.CheckoutDAOImpl;
 import com.niit.shoppingcart.dao.ProductDAO;
 import com.niit.shoppingcart.dao.ProductDAOImpl;
 import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.dao.SupplierDAOImpl;
 import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Checkout;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
 import com.niit.shoppingcart.model.UserDetails;
@@ -62,6 +65,7 @@ public SessionFactory getSessionFactory(DataSource dataSource){
     sessionBuilder.addAnnotatedClass(UserDetails.class);
 	sessionBuilder.addAnnotatedClass(Product.class);
 	sessionBuilder.addAnnotatedClass(Cart.class);
+	sessionBuilder.addAnnotatedClass(Checkout.class);
 	return sessionBuilder.buildSessionFactory();
 	
 }
@@ -97,5 +101,11 @@ public SupplierDAO getSupplierDAO(SessionFactory sessionFactory){
 public CartDAO getcartDAO(SessionFactory sessionFactory){
 	
 	return new CartDAOImpl(sessionFactory);
+}
+@Autowired
+@Bean(name="checkoutDAO")
+public CheckoutDAO getcheckoutDAO(SessionFactory sessionFactory){
+	
+	return new CheckoutDAOImpl(sessionFactory);
 }
 }

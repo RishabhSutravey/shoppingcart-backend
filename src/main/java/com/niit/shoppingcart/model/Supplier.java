@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +17,10 @@ public class Supplier {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotNull(message="Please Enter the name")
 	private String name;
+	@NotNull
+	@Size(min=3 , message="Please Enter the address")
 	private String address;
 	public int getId() {
 		return id;
